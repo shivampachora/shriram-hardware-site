@@ -1,38 +1,36 @@
-import { type User, type InsertUser } from "@shared/schema";
-import { randomUUID } from "crypto";
-
-// modify the interface with any CRUD methods
-// you might need
+import { db } from "./db";
+import { categories, products, type Category, type Product } from "@shared/schema";
+import { eq } from "drizzle-orm";
 
 export interface IStorage {
-  getUser(id: string): Promise<User | undefined>;
-  getUserByUsername(username: string): Promise<User | undefined>;
-  createUser(user: InsertUser): Promise<User>;
+  getCategories(): Promise<Category[]>;
+  getProducts(categoryId?: number): Promise<Product[]>;
+  createCategory(category: { name: string, imageUrl: string }): Promise<Category>;
+  createProduct(product: { categoryId: number, name: string, sizes: string, imageUrl: string }): Promise<Product>;
 }
 
-export class MemStorage implements IStorage {
-  private users: Map<string, User>;
-
-  constructor() {
-    this.users = new Map();
+export class DatabaseStorage implements IStorage {
+  async getCategories(): Promise<Category[]> {
+    return await db.select().from(categories);
   }
 
-  async getUser(id: string): Promise<User | undefined> {
-    return this.users.get(id);
+  async getProducts(categoryId?: number): Promise<Product[]> {
+    let query = db.select().from(products);
+    if (categoryId !== undefined) {
+      return await query.where(eq(products.categoryId, categoryId));
+    }
+    return await query;
   }
 
-  async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
+  async createCategory(category: { name: string, imageUrl: string }): Promise<Category> {
+    const [inserted] = await db.insert(categories).values(category).returning();
+    return inserted;
   }
 
-  async createUser(insertUser: InsertUser): Promise<User> {
-    const id = randomUUID();
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
-    return user;
+  async createProduct(product: { categoryId: number, name: string, sizes: string, imageUrl: string }): Promise<Product> {
+    const [inserted] = await db.insert(products).values(product).returning();
+    return inserted;
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DatabaseStorage();
