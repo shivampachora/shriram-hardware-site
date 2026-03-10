@@ -12,40 +12,40 @@ export function ProductCard({ product }: { product: Product }) {
   };
 
   return (
-    <div className="bg-white rounded-2xl overflow-hidden shadow-md border border-border flex flex-col hover:shadow-xl transition-shadow duration-300">
-      <div className="aspect-square w-full bg-secondary overflow-hidden">
+    <div className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl border border-border/50 flex flex-col transition-all duration-500 ease-out hover:-translate-y-2">
+      <div className="aspect-square w-full bg-secondary overflow-hidden rounded-3xl m-4">
         <img
           src={product.imageUrl}
           alt={product.name}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
         />
       </div>
       
-      <div className="p-5 flex-1 flex flex-col">
-        <h3 className="text-2xl font-bold text-foreground leading-tight mb-2">
+      <div className="px-6 pb-6 flex-1 flex flex-col">
+        <h3 className="text-xl font-bold text-foreground leading-snug mb-3 line-clamp-2">
           {product.name}
         </h3>
         
         {product.sizes && (
-          <p className="text-muted-foreground font-medium mb-6">
-            {t("sizesAvailable")} <span className="text-foreground">{product.sizes}</span>
+          <p className="text-sm text-muted-foreground font-medium mb-8 leading-relaxed">
+            <span className="font-semibold text-foreground">{t("sizesAvailable")}</span><br />{product.sizes}
           </p>
         )}
         
-        <div className="mt-auto flex flex-col sm:flex-row gap-3">
+        <div className="mt-auto flex flex-col gap-3">
           <button
             onClick={handleWhatsApp}
-            className="flex-1 flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1ebd5b] text-white py-4 px-4 rounded-xl font-bold text-lg shadow-lg shadow-[#25D366]/30 active:scale-95 transition-all"
+            className="w-full flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba5a] text-white py-3 px-4 rounded-2xl font-bold text-base shadow-lg shadow-[#25D366]/20 active:scale-95 transition-all duration-300"
           >
-            <MessageCircle className="w-6 h-6 fill-current" />
+            <MessageCircle className="w-5 h-5 fill-current" />
             <span>{t("whatsappOrder")}</span>
           </button>
           
           <a
             href={`tel:+${shopPhone}`}
-            className="flex-1 flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white py-4 px-4 rounded-xl font-bold text-lg shadow-lg shadow-primary/30 active:scale-95 transition-all"
+            className="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white py-3 px-4 rounded-2xl font-bold text-base shadow-lg shadow-primary/20 active:scale-95 transition-all duration-300"
           >
-            <Phone className="w-6 h-6 fill-current" />
+            <Phone className="w-5 h-5 fill-current" />
             <span>{t("callToOrder")}</span>
           </a>
         </div>

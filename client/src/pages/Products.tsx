@@ -16,12 +16,12 @@ export default function Products() {
   const selectedCategory = categories?.find(c => c.id === categoryId);
 
   return (
-    <div className="w-full py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      <div className="mb-12">
-        <h1 className="text-5xl font-black text-foreground mb-4">
+    <div className="w-full py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div className="mb-16">
+        <h1 className="text-5xl md:text-6xl font-black text-foreground mb-4">
           {selectedCategory ? selectedCategory.name : t("allProducts")}
         </h1>
-        <p className="text-xl text-muted-foreground">
+        <p className="text-lg text-muted-foreground max-w-2xl">
           Find exactly what you need. Easy to order via Call or WhatsApp.
         </p>
       </div>
@@ -29,7 +29,7 @@ export default function Products() {
       {isLoadingProducts ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {[1, 2, 3, 4, 5, 6].map(i => (
-            <div key={i} className="h-[500px] bg-white border border-border animate-pulse rounded-2xl" />
+            <div key={i} className="h-[500px] bg-white border border-border animate-pulse rounded-3xl" />
           ))}
         </div>
       ) : products?.length === 0 ? (
@@ -38,7 +38,7 @@ export default function Products() {
             <span className="text-4xl">📦</span>
           </div>
           <h3 className="text-3xl font-bold text-foreground mb-2">{t("noProducts")}</h3>
-          <p className="text-xl text-muted-foreground">Check back later or try another category.</p>
+          <p className="text-lg text-muted-foreground">Check back later or try another category.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

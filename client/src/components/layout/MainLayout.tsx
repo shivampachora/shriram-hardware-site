@@ -5,7 +5,7 @@ import { FloatingWhatsApp } from "./FloatingWhatsApp";
 
 export function MainLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-screen flex flex-col relative bg-secondary/30">
+    <div className="min-h-screen flex flex-col relative bg-white">
       <Navbar />
       <main className="flex-grow flex flex-col">
         {children}

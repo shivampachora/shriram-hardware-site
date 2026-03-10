@@ -33,11 +33,11 @@ export function HeroCarousel({ categories }: HeroCarouselProps) {
   }
 
   return (
-    <div className="relative w-full overflow-hidden rounded-3xl group shadow-2xl" ref={emblaRef}>
+    <div className="relative w-full overflow-hidden rounded-3xl group shadow-xl" ref={emblaRef}>
       <div className="flex touch-pan-y">
         {categories.map((category) => (
           <div className="relative flex-[0_0_100%] min-w-0 h-[50vh] md:h-[70vh]" key={category.id}>
-            <div className="absolute inset-0 bg-black/40 z-10" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/60 z-10" />
             <img
               src={category.imageUrl}
               alt={category.name}
@@ -45,12 +45,12 @@ export function HeroCarousel({ categories }: HeroCarouselProps) {
             />
             
             <div className="absolute inset-0 z-20 flex flex-col items-center justify-center p-6 text-center">
-              <h2 className="text-4xl md:text-6xl font-black text-white mb-6 drop-shadow-lg max-w-4xl text-balance">
+              <h2 className="text-4xl md:text-6xl font-black text-white mb-8 drop-shadow-xl max-w-4xl text-balance leading-tight">
                 {category.name}
               </h2>
               <Link 
                 href={`/products?categoryId=${category.id}`}
-                className="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl font-bold text-xl md:text-2xl shadow-xl hover:-translate-y-1 transition-all"
+                className="bg-primary hover:bg-primary/90 text-white px-10 py-4 rounded-2xl font-bold text-lg md:text-xl shadow-xl hover:-translate-y-1 transition-all duration-300 active:scale-95"
               >
                 {t("viewProducts")}
               </Link>
