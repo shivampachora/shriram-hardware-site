@@ -1,6 +1,6 @@
 import { useCategories } from "@/hooks/use-categories";
 import { useProducts } from "@/hooks/use-products";
-import { HeroCarousel } from "@/components/home/HeroCarousel";
+import { PremiumHero } from "@/components/home/PremiumHero";
 import { CategoryCard } from "@/components/ui/CategoryCard";
 import { ProductCard } from "@/components/ui/ProductCard";
 import { PriceGuide } from "@/components/home/PriceGuide";
@@ -8,116 +8,120 @@ import { MapPin, Phone, Clock } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { Link } from "wouter";
 
-// Fallback data for empty states
-const FALLBACK_CATEGORIES = [
-  { id: 1, name: "Motors & Pumps", imageUrl: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&auto=format&fit=crop&q=60" },
-  { id: 2, name: "PVC Pipes", imageUrl: "https://images.unsplash.com/photo-1528154291023-a6525fabe5b4?w=800&auto=format&fit=crop&q=60" },
-  { id: 3, name: "Sprayers", imageUrl: "https://images.unsplash.com/photo-1592982537447-7440770cbfc9?w=800&auto=format&fit=crop&q=60" },
-];
-
 export default function Home() {
   const { data: categories, isLoading: isLoadingCats } = useCategories();
   const { data: products, isLoading: isLoadingProds } = useProducts();
   const { t } = useI18n();
 
-  const displayCategories = categories?.length ? categories : FALLBACK_CATEGORIES;
-  const topProducts = products?.slice(0, 3) || [];
+  const topProducts = products?.slice(0, 6) || [];
 
   return (
     <div className="w-full">
-      {/* Hero Section */}
-      <section className="px-4 py-8 md:py-12 max-w-[1400px] mx-auto">
-        <HeroCarousel categories={displayCategories} />
-      </section>
+      {/* Premium Hero Section */}
+      <PremiumHero />
 
-      {/* Categories Grid */}
-      <section className="py-24 bg-white">
+      {/* Category Explorer Section */}
+      <section className="py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-end mb-12">
-            <div>
-              <h2 className="text-5xl font-black text-foreground">{t("categories")}</h2>
-              <p className="text-lg text-muted-foreground mt-2">Explore our wide range of hardware products</p>
-            </div>
-            <Link href="/categories" className="text-primary font-bold hover:text-primary/80 hidden sm:block text-lg transition-colors">
-              View All
-            </Link>
+          <div className="mb-16">
+            <h2 className="text-5xl font-black text-foreground mb-3">Explore Categories</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl">
+              Browse our complete range of hardware products, organized by category for easy shopping
+            </p>
           </div>
           
           {isLoadingCats ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[1, 2, 3, 4].map(i => (
-                <div key={i} className="h-64 bg-secondary animate-pulse rounded-3xl" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[1, 2, 3, 4, 5, 6].map(i => (
+                <div key={i} className="h-72 bg-secondary animate-pulse rounded-3xl" />
               ))}
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {displayCategories.slice(0, 8).map(category => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {categories?.map(category => (
                 <CategoryCard key={category.id} category={category} />
               ))}
             </div>
           )}
-          
-          <div className="mt-10 text-center sm:hidden">
-            <Link href="/categories" className="inline-block bg-primary text-white font-bold px-8 py-4 rounded-2xl w-full transition-all hover:bg-primary/90">
-              View All Categories
-            </Link>
-          </div>
         </div>
       </section>
 
-      {/* Featured Products */}
+      {/* Popular Products Section */}
       {topProducts.length > 0 && (
-        <section className="py-24 bg-white">
+        <section className="py-28 bg-secondary/30">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-end mb-12">
-              <div>
-                <h2 className="text-5xl font-black text-foreground">Featured Products</h2>
-                <p className="text-lg text-muted-foreground mt-2">Popular items from our collection</p>
-              </div>
-              <Link href="/products" className="text-primary font-bold hover:text-primary/80 hidden sm:block text-lg transition-colors">
-                {t("allProducts")}
-              </Link>
+            <div className="mb-16">
+              <h2 className="text-5xl font-black text-foreground mb-3">Popular Products</h2>
+              <p className="text-lg text-muted-foreground max-w-2xl">
+                Handpicked selection of our best-selling items
+              </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {topProducts.map(product => (
                 <ProductCard key={product.id} product={product} />
               ))}
+            </div>
+
+            <div className="text-center mt-16">
+              <Link href="/products" className="inline-block bg-primary hover:bg-primary/90 text-white font-bold px-12 py-4 rounded-2xl text-lg transition-all duration-300 shadow-lg">
+                View All Products
+              </Link>
             </div>
           </div>
         </section>
       )}
 
-      {/* Price Guide */}
+      {/* Quick Price Guide */}
       <PriceGuide />
 
-      {/* Shop Info Highlights */}
-      <section className="py-24 bg-secondary/30">
+      {/* Shop Information */}
+      <section className="py-28 bg-secondary/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-primary rounded-3xl p-8 md:p-16 text-white shadow-xl flex flex-col lg:flex-row items-center justify-between gap-12">
-            <div className="lg:w-1/2">
-              <h2 className="text-5xl font-black mb-6">Visit Shriram Hardware</h2>
-              <p className="text-lg text-primary-foreground/90 mb-10 leading-relaxed">
-                We provide the best quality hardware, motors, and agriculture supplies directly to farmers and plumbers. Your trusted partner for all hardware needs.
-              </p>
-              
-              <div className="space-y-5">
-                <div className="flex items-center gap-4 text-base font-medium bg-black/30 p-5 rounded-2xl backdrop-blur-sm">
-                  <Clock className="w-7 h-7 shrink-0" />
-                  <span>Open Everyday: 8:00 AM to 8:00 PM</span>
-                </div>
-                <div className="flex items-center gap-4 text-base font-medium bg-black/30 p-5 rounded-2xl backdrop-blur-sm">
-                  <Phone className="w-7 h-7 shrink-0" />
-                  <a href="tel:+919999999999" className="hover:underline">+91 9999999999</a>
-                </div>
-                <div className="flex items-center gap-4 text-base font-medium bg-black/30 p-5 rounded-2xl backdrop-blur-sm">
-                  <MapPin className="w-7 h-7 shrink-0" />
-                  <span>Main Market Road, Pachora</span>
+          <div className="mb-16">
+            <h2 className="text-5xl font-black text-foreground mb-3">Visit Us Today</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl">
+              Located in the heart of Pachora, ready to serve your hardware needs
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              <div className="bg-white rounded-3xl p-8 shadow-sm border border-border/50">
+                <h3 className="text-2xl font-bold text-foreground mb-6">Shriram Hardware Pachora</h3>
+                <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+                  Your trusted partner for premium quality hardware, motors, pipes, agricultural sprayers, and complete hardware solutions for farmers and plumbers.
+                </p>
+
+                <div className="space-y-5">
+                  <div className="flex items-start gap-4">
+                    <Clock className="w-6 h-6 text-primary shrink-0 mt-1" />
+                    <div>
+                      <p className="font-semibold text-foreground">Opening Hours</p>
+                      <p className="text-muted-foreground">8:00 AM to 8:00 PM, Open Every Day</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <Phone className="w-6 h-6 text-primary shrink-0 mt-1" />
+                    <div>
+                      <p className="font-semibold text-foreground">Phone</p>
+                      <a href="tel:+919999999999" className="text-primary hover:underline font-medium">+91 9999999999</a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <MapPin className="w-6 h-6 text-primary shrink-0 mt-1" />
+                    <div>
+                      <p className="font-semibold text-foreground">Location</p>
+                      <p className="text-muted-foreground">Main Market Road, Pachora, Maharashtra</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            
-            <div className="lg:w-1/2 w-full h-[400px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white/20">
+
+            <div className="w-full h-[450px] rounded-3xl overflow-hidden shadow-lg border border-border/50">
               <iframe 
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14986.721495913227!2d75.33946059999999!3d20.6698692!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd1438914b4de97%3A0xc61d6ce67b2d56a3!2sPachora%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
                 width="100%" 
