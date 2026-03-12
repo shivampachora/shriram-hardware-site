@@ -2,10 +2,10 @@ import { Link } from "wouter";
 import { Category } from "@shared/schema";
 import { ArrowRight } from "lucide-react";
 
-export function CategoryCard({ category }: { category: Category }) {
+export function CategoryCard({ category, href }: { category: Category; href?: string }) {
   return (
     <Link 
-      href={`/products?categoryId=${category.id}`}
+      href={href ?? `/explore?categoryId=${category.id}`}
       className="group block bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl border border-border/50 transition-all duration-500 ease-out hover:-translate-y-1"
     >
       <div className="aspect-[4/3] w-full overflow-hidden bg-secondary relative">

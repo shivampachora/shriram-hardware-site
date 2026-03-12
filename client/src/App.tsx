@@ -8,8 +8,10 @@ import { MainLayout } from "./components/layout/MainLayout";
 import NotFound from "@/pages/not-found";
 
 import Home from "./pages/Home";
-import Products from "./pages/Products";
+import Explore from "./pages/Explore";
+import Thibak from "./pages/Thibak";
 import Categories from "./pages/Categories";
+import Products from "./pages/Products";
 import Contact from "./pages/Contact";
 
 function Router() {
@@ -17,10 +19,11 @@ function Router() {
     <MainLayout>
       <Switch>
         <Route path="/" component={Home} />
-        <Route path="/products" component={Products} />
+        <Route path="/explore" component={Explore} />
+        <Route path="/thibak" component={Thibak} />
         <Route path="/categories" component={Categories} />
+        <Route path="/products" component={Products} />
         <Route path="/contact" component={Contact} />
-        {/* Fallback to 404 */}
         <Route component={NotFound} />
       </Switch>
     </MainLayout>

@@ -4,7 +4,8 @@ import { useI18n } from "@/lib/i18n";
 
 export function ProductCard({ product }: { product: Product }) {
   const { t } = useI18n();
-  const shopPhone = "919999999999";
+  const shopPhone = "918329088881";
+  const callPhone = "9403514471";
 
   const handleWhatsApp = () => {
     const text = encodeURIComponent(`Hello Shriram Hardware, I want this product: ${product.name} (Size: ${product.sizes})`);
@@ -42,7 +43,7 @@ export function ProductCard({ product }: { product: Product }) {
           </button>
           
           <a
-            href={`tel:+${shopPhone}`}
+            href={`tel:+91${callPhone}`}
             className="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white py-3 px-4 rounded-2xl font-bold text-base shadow-lg shadow-primary/20 active:scale-95 transition-all duration-300"
           >
             <Phone className="w-5 h-5 fill-current" />
