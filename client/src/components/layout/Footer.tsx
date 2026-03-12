@@ -2,7 +2,7 @@ import { MapPin, Phone, Clock, MessageCircle, Instagram } from "lucide-react";
 import { Link } from "wouter";
 
 const CALL_NUMBER = "9403514471";
-const WA_NUMBER = "918329088881";
+const WA_NUMBER = "918329139076";
 const INSTA_URL = "https://www.instagram.com/shriram_hardware_pachora";
 
 export function Footer() {
@@ -89,7 +89,7 @@ export function Footer() {
                 <Phone className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                 <div>
                   <a href={`tel:+91${CALL_NUMBER}`} className="text-white font-semibold text-sm hover:text-primary transition-colors block">{CALL_NUMBER}</a>
-                  <a href={`https://wa.me/${WA_NUMBER}`} className="text-white/60 text-sm hover:text-white transition-colors block" target="_blank" rel="noopener noreferrer">8329088881 (WhatsApp)</a>
+                  <a href={`https://wa.me/${WA_NUMBER}`} className="text-white/60 text-sm hover:text-white transition-colors block" target="_blank" rel="noopener noreferrer">8329139076 (WhatsApp)</a>
                 </div>
               </div>
 

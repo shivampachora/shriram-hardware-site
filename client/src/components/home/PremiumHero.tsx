@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { MessageCircle, ChevronDown } from "lucide-react";
 
-const WA_NUMBER = "918329088881";
+const WA_NUMBER = "918329139076";
 
 export function PremiumHero() {
   const handleWhatsApp = () => {

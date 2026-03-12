@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Droplets, CheckCircle, Phone, Send, ChevronDown } from "lucide-react";
 
-const WA_NUMBER = "918329088881";
+const WA_NUMBER = "918329139076";
 const CALL_NUMBER = "9403514471";
 
 const VILLAGES = [

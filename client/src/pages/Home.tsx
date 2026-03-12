@@ -4,7 +4,7 @@ import { PriceGuide } from "@/components/home/PriceGuide";
 import { Phone, MessageCircle, Award, Tag, Users } from "lucide-react";
 
 const CALL_NUMBER = "9403514471";
-const WA_NUMBER = "918329088881";
+const WA_NUMBER = "918329139076";
 
 const FEATURE_CARDS = [
   {
@@ -161,7 +161,7 @@ export default function Home() {
           <p className="mt-10 text-muted-foreground font-medium">
             Call: <a href={`tel:+91${CALL_NUMBER}`} className="text-primary font-bold hover:underline">{CALL_NUMBER}</a>
             &nbsp;&nbsp;·&nbsp;&nbsp;
-            WhatsApp: <span className="text-primary font-bold">8329088881</span>
+            WhatsApp: <span className="text-primary font-bold">8329139076</span>
           </p>
         </div>
       </section>

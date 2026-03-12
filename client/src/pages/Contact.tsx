@@ -1,7 +1,7 @@
 import { MapPin, Phone, Clock, MessageCircle, Instagram } from "lucide-react";
 
 const CALL_NUMBER = "9403514471";
-const WA_NUMBER = "918329088881";
+const WA_NUMBER = "918329139076";
 const INSTA_URL = "https://www.instagram.com/shriram_hardware_pachora";
 
 export default function Contact() {
@@ -45,7 +45,7 @@ export default function Contact() {
                 <MessageCircle className="w-8 h-8 text-[#25D366]" />
               </div>
               <h3 className="text-xl font-bold text-foreground mb-3" style={{ fontFamily: "var(--font-display)" }}>WhatsApp</h3>
-              <a href={`https://wa.me/${WA_NUMBER}`} target="_blank" rel="noopener noreferrer" className="text-2xl font-black text-[#25D366] hover:underline block mb-1">8329088881</a>
+              <a href={`https://wa.me/${WA_NUMBER}`} target="_blank" rel="noopener noreferrer" className="text-2xl font-black text-[#25D366] hover:underline block mb-1">8329139076</a>
               <p className="text-muted-foreground text-sm">Quick order &amp; inquiry</p>
             </div>
 

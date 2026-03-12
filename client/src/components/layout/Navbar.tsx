@@ -3,7 +3,7 @@ import { Phone, MessageCircle, Instagram, Menu, X } from "lucide-react";
 import { useState } from "react";
 
 const CALL_NUMBER = "9403514471";
-const WA_NUMBER = "918329088881";
+const WA_NUMBER = "918329139076";
 const INSTA_URL = "https://www.instagram.com/shriram_hardware_pachora";
 
 export function Navbar() {

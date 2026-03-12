@@ -4,7 +4,7 @@ import { useI18n } from "@/lib/i18n";
 
 export function ProductCard({ product }: { product: Product }) {
   const { t } = useI18n();
-  const shopPhone = "918329088881";
+  const shopPhone = "918329139076";
   const callPhone = "9403514471";
 
   const handleWhatsApp = () => {
